@@ -33,7 +33,6 @@
 
         section { padding: 60px 20px; text-align: center; max-width: 800px; margin: 0 auto; position: relative; }
 
-        /* ОЮ-ӨРНЕКТЕР (Анық көрінетін стиль) */
         .ornament-box {
             display: block; width: 100px; height: auto; margin: 0 auto 20px;
             fill: var(--soft-gold);
@@ -49,7 +48,6 @@
         }
         .hero h1 { font-family: 'Great Vibes', cursive; font-size: 4.5rem; margin: 10px 0; color: #fff; }
 
-        /* INFO CARD */
         .info-card {
             background: #fff; 
             border: 1px solid #e8e0cc; 
@@ -69,7 +67,7 @@
         .timer-unit b { font-size: 1.4rem; color: var(--gold); font-family: 'Montserrat', sans-serif; }
         .timer-unit span { font-size: 0.6rem; text-transform: uppercase; color: #777; }
 
-        /* БАТЫРМА ЖӘНЕ ИНПУТ */
+        /* RSVP FORM */
         .rsvp-form { max-width: 400px; margin: 0 auto; }
         input, select { 
             width: 100%; padding: 14px; margin: 10px 0; 
@@ -84,18 +82,60 @@
         }
         .btn:hover { background: var(--dark); }
 
-        /* КАРТА */
+        /* MAP */
         .map-frame { 
             width: 100%; height: 350px; border: 5px solid white; 
             box-shadow: 0 5px 20px rgba(0,0,0,0.1); border-radius: 10px;
         }
 
-        footer { padding: 40px; color: var(--soft-gold); font-size: 0.8rem; letter-spacing: 2px; }
+        footer { padding: 40px; color: var(--soft-gold); font-size: 0.8rem; letter-spacing: 2px; text-align: center; }
+
+        /* МУЗЫКА БАТЫРМАСЫ */
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            cursor: pointer;
+            border: 2px solid var(--soft-gold);
+        }
+
+        .music-control svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--gold);
+        }
+
+        .music-control.playing {
+            animation: rotateMusic 4s linear infinite;
+        }
+
+        @keyframes rotateMusic {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
 
-    <!-- HERO -->
+    <audio id="weddingMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        Сенің браузерің аудионы қолдамайды.
+    </audio>
+
+    <div class="music-control" id="musicBtn" onclick="toggleMusic()">
+        <svg id="playIcon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        <svg id="pauseIcon" viewBox="0 0 24 24" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+    </div>
+
     <div class="hero">
         <div class="reveal active">
             <p style="letter-spacing: 5px; text-transform: uppercase; font-size: 0.9rem;">Тойға шақыру</p>
@@ -104,9 +144,7 @@
         </div>
     </div>
 
-    <!-- ШАҚЫРУ МӘТІНІ -->
     <section class="reveal">
-        <!-- Анық Ою -->
         <svg class="ornament-box" viewBox="0 0 100 50">
             <path d="M10,25 Q25,0 50,25 T90,25 M10,25 Q25,50 50,25 T90,25" fill="none" stroke="#b8860b" stroke-width="2"/>
             <circle cx="50" cy="25" r="5" fill="#b8860b"/>
@@ -120,15 +158,12 @@
         </div>
     </section>
 
-    <!-- ТОЙ САЛТАНАТЫ ЖӘНЕ ТАЙМЕР -->
     <section class="reveal" style="background-color: #f9f5eb;">
         <h2>Той салтанаты</h2>
         <div class="info-card">
             <p style="font-weight: 700; font-size: 1.5rem; color: var(--gold); margin-bottom: 10px;">19 Маусым 2026</p>
             <p style="font-size: 1.2rem; margin-bottom: 20px;">Сәрсенбі, сағат 18:00</p>
-            
             <div style="height: 1px; width: 60px; background: var(--soft-gold); margin: 15px auto;"></div>
-            
             <p style="font-size: 1.4rem; font-weight: 600;">«Алтын холл» рестораны</p>
             <p style="color: #666;">Құлжа тас жолы, Бәйтерек, 133</p>
         </div>
@@ -144,7 +179,6 @@
         </div>
     </section>
 
-    <!-- ТОЙ ИЕЛЕРІ -->
     <section class="reveal">
         <p style="text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; color: #888;">Ақ тілекпен шақырушылар:</p>
         <h3 style="font-size: 3rem; font-family: 'Great Vibes', cursive; margin: 10px 0; color: var(--dark);">Ерболат — Назгүл</h3>
@@ -155,7 +189,6 @@
         </svg>
     </section>
 
-    <!-- RSVP -->
     <section class="reveal">
         <h2>Жауап беру</h2>
         <div class="rsvp-form">
@@ -170,11 +203,10 @@
         </div>
     </section>
 
-    <!-- КАРТА -->
     <section class="reveal">
         <div class="map-frame">
             <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d46487.24584747167!2d77.0504104!3d43.3257321!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38836ba339798547%3A0x628067b8482436d5!2z0JrRg9C70LbQuNC90YHQutC40Lkg0YLRgNCw0LrRgg!5e0!3m2!1skk!2skz!4v1715000000000" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2906.7725838531034!2d77.19830587654162!3d43.235222271124844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDPCsDE0JzA2LjgiTiA3N8KwMTInMDIuMCJF!5e0!3m2!1skk!2skz!4v1700000000000!5m2!1skk!2skz" 
                 width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
             </iframe>
         </div>
@@ -185,6 +217,26 @@
     </footer>
 
     <script>
+        // Music Function
+        const music = document.getElementById('weddingMusic');
+        const musicBtn = document.getElementById('musicBtn');
+        const playIcon = document.getElementById('playIcon');
+        const pauseIcon = document.getElementById('pauseIcon');
+
+        function toggleMusic() {
+            if (music.paused) {
+                music.play();
+                musicBtn.classList.add('playing');
+                playIcon.style.display = 'none';
+                pauseIcon.style.display = 'block';
+            } else {
+                music.pause();
+                musicBtn.classList.remove('playing');
+                playIcon.style.display = 'block';
+                pauseIcon.style.display = 'none';
+            }
+        }
+
         // Reveal Animation
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
@@ -212,7 +264,7 @@
 
         // WhatsApp
         function sendWA() {
-            const phone = "7707 394 19 43"; 
+            const phone = "77073941943"; 
             const name = document.getElementById('guestName').value;
             const status = document.getElementById('status').value;
             if(!name) return alert("Өтінеміз, атыңызды жазыңыз");
