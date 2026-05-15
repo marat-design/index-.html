@@ -67,7 +67,7 @@
         .timer-unit b { font-size: 1.4rem; color: var(--gold); font-family: 'Montserrat', sans-serif; }
         .timer-unit span { font-size: 0.6rem; text-transform: uppercase; color: #777; }
 
-        /* RSVP FORM */
+        /* БАТЫРМА ЖӘНЕ ИНПУТ */
         .rsvp-form { max-width: 400px; margin: 0 auto; }
         input, select { 
             width: 100%; padding: 14px; margin: 10px 0; 
@@ -82,58 +82,33 @@
         }
         .btn:hover { background: var(--dark); }
 
-        /* MAP */
+        /* КАРТА */
         .map-frame { 
             width: 100%; height: 350px; border: 5px solid white; 
             box-shadow: 0 5px 20px rgba(0,0,0,0.1); border-radius: 10px;
         }
 
-        footer { padding: 40px; color: var(--soft-gold); font-size: 0.8rem; letter-spacing: 2px; text-align: center; }
+        footer { padding: 40px; color: var(--soft-gold); font-size: 0.8rem; letter-spacing: 2px; }
 
         /* МУЗЫКА БАТЫРМАСЫ */
-        .music-control {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-            background: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            cursor: pointer;
-            border: 2px solid var(--soft-gold);
+        .music-btn {
+            position: fixed; bottom: 25px; right: 25px; z-index: 9999;
+            background: #fff; width: 45px; height: 45px; border-radius: 50%;
+            border: 2px solid var(--gold); display: flex; align-items: center;
+            justify-content: center; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
-
-        .music-control svg {
-            width: 24px;
-            height: 24px;
-            fill: var(--gold);
-        }
-
-        .music-control.playing {
-            animation: rotateMusic 4s linear infinite;
-        }
-
-        @keyframes rotateMusic {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
+        .music-btn.playing { animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
     </style>
 </head>
 <body>
 
-    <audio id="weddingMusic" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-        Сенің браузерің аудионы қолдамайды.
+    <audio id="myMusic" loop>
+        <source src="https://www.chosic.com/wp-content/uploads/2021/07/Rain-on-the-window-piano-and-cello.mp3" type="audio/mpeg">
     </audio>
 
-    <div class="music-control" id="musicBtn" onclick="toggleMusic()">
-        <svg id="playIcon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-        <svg id="pauseIcon" viewBox="0 0 24 24" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+    <div class="music-btn" id="musicBtn" onclick="toggleMusic()">
+        <span id="musicIcon" style="font-size: 20px;">🎵</span>
     </div>
 
     <div class="hero">
@@ -163,7 +138,9 @@
         <div class="info-card">
             <p style="font-weight: 700; font-size: 1.5rem; color: var(--gold); margin-bottom: 10px;">19 Маусым 2026</p>
             <p style="font-size: 1.2rem; margin-bottom: 20px;">Сәрсенбі, сағат 18:00</p>
+            
             <div style="height: 1px; width: 60px; background: var(--soft-gold); margin: 15px auto;"></div>
+            
             <p style="font-size: 1.4rem; font-weight: 600;">«Алтын холл» рестораны</p>
             <p style="color: #666;">Құлжа тас жолы, Бәйтерек, 133</p>
         </div>
@@ -206,34 +183,30 @@
     <section class="reveal">
         <div class="map-frame">
             <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2906.7725838531034!2d77.19830587654162!3d43.235222271124844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDPCsDE0JzA2LjgiTiA3N8KwMTInMDIuMCJF!5e0!3m2!1skk!2skz!4v1700000000000!5m2!1skk!2skz" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2906.7725722123533!2d77.2343823154842!3d43.25667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDPCsDE1JzI0LjAiTiA3N8KwMTQnMTEuOCJF!5e0!3m2!1skk!2skz!4v1621234567890!5m2!1skk!2skz" 
                 width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
             </iframe>
         </div>
     </section>
 
-    <footer>
+    <footer style="text-align: center;">
         <p>СІЗДЕРДІ АСЫҒА КҮТЕМІЗ!</p>
     </footer>
 
     <script>
-        // Music Function
-        const music = document.getElementById('weddingMusic');
-        const musicBtn = document.getElementById('musicBtn');
-        const playIcon = document.getElementById('playIcon');
-        const pauseIcon = document.getElementById('pauseIcon');
-
+        // Music Toggle
         function toggleMusic() {
+            const music = document.getElementById('myMusic');
+            const btn = document.getElementById('musicBtn');
+            const icon = document.getElementById('musicIcon');
             if (music.paused) {
                 music.play();
-                musicBtn.classList.add('playing');
-                playIcon.style.display = 'none';
-                pauseIcon.style.display = 'block';
+                btn.classList.add('playing');
+                icon.innerText = '⏸';
             } else {
                 music.pause();
-                musicBtn.classList.remove('playing');
-                playIcon.style.display = 'block';
-                pauseIcon.style.display = 'none';
+                btn.classList.remove('playing');
+                icon.innerText = '🎵';
             }
         }
 
@@ -256,10 +229,12 @@
         setInterval(function() {
             const now = new Date().getTime();
             const diff = target - now;
-            document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
-            document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            document.getElementById("minutes").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            document.getElementById("seconds").innerText = Math.floor((diff % (1000 * 60)) / 1000);
+            if(diff > 0) {
+                document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+                document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                document.getElementById("minutes").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                document.getElementById("seconds").innerText = Math.floor((diff % (1000 * 60)) / 1000);
+            }
         }, 1000);
 
         // WhatsApp
