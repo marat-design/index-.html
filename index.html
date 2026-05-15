@@ -4,69 +4,220 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Дамир & Ленора | Үйлену тойы</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #b8860b; --soft-gold: #d4af37; --ivory: #fdfaf1; }
-        body { margin: 0; font-family: 'Cormorant Garamond', serif; background-color: var(--ivory); color: #2c2c2c; }
-        .reveal { opacity: 0; transform: translateY(30px); transition: 1.2s all ease; text-align: center; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        .hero { height: 100vh; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070') center/cover; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; }
-        h1 { font-family: 'Great Vibes', cursive; font-size: 4.5rem; margin: 10px 0; }
-        .info-card { background: #fff; border: 1px solid #e8e0cc; padding: 40px 20px; margin: 20px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 600px; margin-left: auto; margin-right: auto; }
-        .ornament { width: 80px; fill: var(--soft-gold); margin-bottom: 10px; }
-        .map-frame { width: 90%; height: 350px; border: 5px solid white; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin: 20px auto; max-width: 600px; }
-        .btn { background: var(--gold); color: white; border: none; padding: 16px; width: 80%; max-width: 300px; cursor: pointer; font-family: 'Montserrat', sans-serif; font-weight: bold; border-radius: 5px; margin-top: 20px; text-decoration: none; display: inline-block; }
+        :root { 
+            --gold: #b8860b; 
+            --soft-gold: #d4af37;
+            --ivory: #fdfaf1; 
+            --dark: #2c2c2c;
+        }
+        * { box-sizing: border-box; }
+        
+        body { 
+            margin: 0; font-family: 'Cormorant Garamond', serif; 
+            background-color: var(--ivory); color: var(--dark); 
+            overflow-x: hidden; scroll-behavior: smooth;
+        }
+
+        /* КЛАССИКАЛЫҚ АНИМАЦИЯ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        section { padding: 60px 20px; text-align: center; max-width: 800px; margin: 0 auto; position: relative; }
+
+        /* ОЮ-ӨРНЕКТЕР (Анық көрінетін стиль) */
+        .ornament-box {
+            display: block; width: 100px; height: auto; margin: 0 auto 20px;
+            fill: var(--soft-gold);
+        }
+
+        /* HERO */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070') center/cover;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            color: white; text-align: center; border-bottom: 4px solid var(--soft-gold);
+        }
+        .hero h1 { font-family: 'Great Vibes', cursive; font-size: 4.5rem; margin: 10px 0; color: #fff; }
+
+        /* INFO CARD */
+        .info-card {
+            background: #fff; 
+            border: 1px solid #e8e0cc; 
+            padding: 40px 25px; 
+            box-shadow: 0 10px 30px rgba(184, 134, 11, 0.1); 
+            border-radius: 10px;
+            position: relative;
+        }
+
+        /* TIMER */
+        .timer-wrap { display: flex; justify-content: center; gap: 10px; margin-top: 25px; }
+        .timer-unit { 
+            background: var(--ivory); border: 1px solid var(--soft-gold); 
+            width: 70px; height: 70px; border-radius: 8px; 
+            display: flex; flex-direction: column; justify-content: center;
+        }
+        .timer-unit b { font-size: 1.4rem; color: var(--gold); font-family: 'Montserrat', sans-serif; }
+        .timer-unit span { font-size: 0.6rem; text-transform: uppercase; color: #777; }
+
+        /* БАТЫРМА ЖӘНЕ ИНПУТ */
+        .rsvp-form { max-width: 400px; margin: 0 auto; }
+        input, select { 
+            width: 100%; padding: 14px; margin: 10px 0; 
+            border: 1px solid #dcd3bc; border-radius: 5px; 
+            background: #fff; font-family: 'Montserrat', sans-serif;
+        }
+        .btn {
+            background: var(--gold); color: white; border: none;
+            padding: 16px; width: 100%; cursor: pointer;
+            font-family: 'Montserrat', sans-serif; font-weight: bold;
+            letter-spacing: 2px; border-radius: 5px; transition: 0.3s;
+        }
+        .btn:hover { background: var(--dark); }
+
+        /* КАРТА */
+        .map-frame { 
+            width: 100%; height: 350px; border: 5px solid white; 
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1); border-radius: 10px;
+        }
+
+        footer { padding: 40px; color: var(--soft-gold); font-size: 0.8rem; letter-spacing: 2px; }
     </style>
 </head>
 <body>
 
+    <!-- HERO -->
     <div class="hero">
         <div class="reveal active">
-            <p style="letter-spacing: 4px;">ТОЙҒА ШАҚЫРУ</p>
+            <p style="letter-spacing: 5px; text-transform: uppercase; font-size: 0.9rem;">Тойға шақыру</p>
             <h1>Дамир & Ленора</h1>
-            <p style="font-size: 1.5rem;">19.06.2026</p>
+            <p style="font-size: 1.5rem; font-weight: 300;">19.06.2026</p>
         </div>
     </div>
 
-    <section class="reveal" style="padding: 60px 20px;">
-        <svg class="ornament" viewBox="0 0 100 50"><path d="M10,25 Q25,0 50,25 T90,25 M10,25 Q25,50 50,25 T90,25" fill="none" stroke="#d4af37" stroke-width="2"/></svg>
+    <!-- ШАҚЫРУ МӘТІНІ -->
+    <section class="reveal">
+        <!-- Анық Ою -->
+        <svg class="ornament-box" viewBox="0 0 100 50">
+            <path d="M10,25 Q25,0 50,25 T90,25 M10,25 Q25,50 50,25 T90,25" fill="none" stroke="#b8860b" stroke-width="2"/>
+            <circle cx="50" cy="25" r="5" fill="#b8860b"/>
+        </svg>
+        
         <h2>Құрметті қонақтар!</h2>
         <div class="info-card">
-            <p style="font-size: 1.4rem; font-style: italic;">Ақ тілекпен сіздерді ұлымыз <b>Дамир</b> мен келініміз <b>Ленораның</b> үйлену тойына арналған ақ дастарханымызға шақырамыз!</p>
-            <div style="height: 1px; width: 50px; background: var(--soft-gold); margin: 20px auto;"></div>
-            <p style="font-weight: bold; letter-spacing: 2px; color: var(--gold);">ТҮГІС ҚОСАЙ</p>
+            <p style="font-size: 1.5rem; line-height: 1.8; font-style: italic; color: #444;">
+                Ақ тілекпен, ақ ниетпен сіздерді ұлымыз <b>Дамир</b> мен келініміз <b>Ленораның</b> үйлену тойына арналған салтанатты ақ дастарханымызға шақырамыз!
+            </p>
         </div>
     </section>
 
-    <section class="reveal" style="background: #f9f5eb; padding: 40px 20px;">
-        <h3>Той мекен-жайы:</h3>
-        <p>«Алтын холл» рестораны<br>Бәйтерек, Құлжа тас жолы, 133</p>
+    <!-- ТОЙ САЛТАНАТЫ ЖӘНЕ ТАЙМЕР -->
+    <section class="reveal" style="background-color: #f9f5eb;">
+        <h2>Той салтанаты</h2>
+        <div class="info-card">
+            <p style="font-weight: 700; font-size: 1.5rem; color: var(--gold); margin-bottom: 10px;">19 Маусым 2026</p>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">Сәрсенбі, сағат 18:00</p>
+            
+            <div style="height: 1px; width: 60px; background: var(--soft-gold); margin: 15px auto;"></div>
+            
+            <p style="font-size: 1.4rem; font-weight: 600;">«Алтын холл» рестораны</p>
+            <p style="color: #666;">Құлжа тас жолы, Бәйтерек, 133</p>
+        </div>
+
+        <div style="margin-top: 40px;">
+            <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; color: var(--gold);">Тойға дейін қалды:</p>
+            <div class="timer-wrap">
+                <div class="timer-unit"><b id="days">00</b><span>күн</span></div>
+                <div class="timer-unit"><b id="hours">00</b><span>сағ</span></div>
+                <div class="timer-unit"><b id="minutes">00</b><span>мин</span></div>
+                <div class="timer-unit"><b id="seconds">00</b><span>сек</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ТОЙ ИЕЛЕРІ -->
+    <section class="reveal">
+        <p style="text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; color: #888;">Ақ тілекпен шақырушылар:</p>
+        <h3 style="font-size: 3rem; font-family: 'Great Vibes', cursive; margin: 10px 0; color: var(--dark);">Ерболат — Назгүл</h3>
+        
+        <svg class="ornament-box" viewBox="0 0 100 50" style="transform: rotate(180deg); margin-top: 20px;">
+            <path d="M10,25 Q25,0 50,25 T90,25 M10,25 Q25,50 50,25 T90,25" fill="none" stroke="#b8860b" stroke-width="2"/>
+            <circle cx="50" cy="25" r="5" fill="#b8860b"/>
+        </svg>
+    </section>
+
+    <!-- RSVP -->
+    <section class="reveal">
+        <h2>Жауап беру</h2>
+        <div class="rsvp-form">
+            <p style="margin-bottom: 20px; color: #666;">Тойға келуіңізді 10 маусымға дейін растауыңызды өтінеміз:</p>
+            <input type="text" id="guestName" placeholder="Аты-жөніңіз">
+            <select id="status">
+                <option value="Келемін">Әрине, келемін!</option>
+                <option value="Жұбайыммен келемін">Жұбайыммен келемін</option>
+                <option value="Келе алмаймын">Өкінішке орай, келе алмаймын</option>
+            </select>
+            <button class="btn" onclick="sendWA()">ЖІБЕРУ</button>
+        </div>
+    </section>
+
+    <!-- КАРТА -->
+    <section class="reveal">
         <div class="map-frame">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2903.411624653535!2d77.2415123!3d43.3056345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDPCsDE4JzIwLjMiTiA3N8KwMTQnMzAuMSJF!5e0!3m2!1skk!2skz!4v1700000000000" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d46487.24584747167!2d77.0504104!3d43.3257321!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38836ba339798547%3A0x628067b8482436d5!2z0JrRg9C70LbQuNC90YHQutC40Lkg0YLRgNCw0LrRgg!5e0!3m2!1skk!2skz!4v1715000000000" 
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+            </iframe>
         </div>
     </section>
 
-    <section class="reveal" style="padding: 60px 20px;">
-        <p>Той иелері: <b>Ерболат — Назгүл</b></p>
-        <button class="btn" onclick="sendWhatsApp()">WhatsApp-қа жауап беру</button>
-    </section>
+    <footer>
+        <p>СІЗДЕРДІ АСЫҒА КҮТЕМІЗ!</p>
+    </footer>
 
     <script>
+        // Reveal Animation
         function reveal() {
-            var rev = document.querySelectorAll(".reveal");
-            for(var i=0; i<rev.length; i++) {
-                var wh = window.innerHeight;
-                var top = rev[i].getBoundingClientRect().top;
-                if(top < wh - 100) rev[i].classList.add("active");
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    reveals[i].classList.add("active");
+                }
             }
         }
         window.addEventListener("scroll", reveal);
         window.onload = reveal;
 
-        function sendWhatsApp() {
-            const phone = "77073941943";
-            const text = "Сәлеметсіз бе! Дамир мен Ленораның тойына шақыруыңызды алдық. Рахмет!";
-            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank');
+        // Timer
+        const target = new Date("June 19, 2026 18:00:00").getTime();
+        setInterval(function() {
+            const now = new Date().getTime();
+            const diff = target - now;
+            document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+            document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById("minutes").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById("seconds").innerText = Math.floor((diff % (1000 * 60)) / 1000);
+        }, 1000);
+
+        // WhatsApp
+        function sendWA() {
+            const phone = "7707 394 19 43"; 
+            const name = document.getElementById('guestName').value;
+            const status = document.getElementById('status').value;
+            if(!name) return alert("Өтінеміз, атыңызды жазыңыз");
+            const text = `Сәлеметсіз бе! Дамир-Ленора тойына жауап: %0AЕсімім: ${name} %0AЖауап: ${status}`;
+            window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
         }
     </script>
 </body>
