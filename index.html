@@ -20,7 +20,6 @@
             overflow-x: hidden; scroll-behavior: smooth;
         }
 
-        /* КЛАССИКАЛЫҚ АНИМАЦИЯ */
         .reveal {
             opacity: 0;
             transform: translateY(40px);
@@ -38,7 +37,6 @@
             fill: var(--soft-gold);
         }
 
-        /* HERO */
         .hero {
             height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
@@ -49,15 +47,11 @@
         .hero h1 { font-family: 'Great Vibes', cursive; font-size: 4.5rem; margin: 10px 0; color: #fff; }
 
         .info-card {
-            background: #fff; 
-            border: 1px solid #e8e0cc; 
-            padding: 40px 25px; 
-            box-shadow: 0 10px 30px rgba(184, 134, 11, 0.1); 
-            border-radius: 10px;
+            background: #fff; border: 1px solid #e8e0cc; padding: 40px 25px; 
+            box-shadow: 0 10px 30px rgba(184, 134, 11, 0.1); border-radius: 10px;
             position: relative;
         }
 
-        /* TIMER */
         .timer-wrap { display: flex; justify-content: center; gap: 10px; margin-top: 25px; }
         .timer-unit { 
             background: var(--ivory); border: 1px solid var(--soft-gold); 
@@ -67,33 +61,24 @@
         .timer-unit b { font-size: 1.4rem; color: var(--gold); font-family: 'Montserrat', sans-serif; }
         .timer-unit span { font-size: 0.6rem; text-transform: uppercase; color: #777; }
 
-        /* БАТЫРМА ЖӘНЕ ИНПУТ */
         .rsvp-form { max-width: 400px; margin: 0 auto; }
         input, select { 
-            width: 100%; padding: 14px; margin: 10px 0; 
-            border: 1px solid #dcd3bc; border-radius: 5px; 
-            background: #fff; font-family: 'Montserrat', sans-serif;
+            width: 100%; padding: 14px; margin: 10px 0; border: 1px solid #dcd3bc; 
+            border-radius: 5px; background: #fff; font-family: 'Montserrat', sans-serif;
         }
         .btn {
-            background: var(--gold); color: white; border: none;
-            padding: 16px; width: 100%; cursor: pointer;
-            font-family: 'Montserrat', sans-serif; font-weight: bold;
-            letter-spacing: 2px; border-radius: 5px; transition: 0.3s;
+            background: var(--gold); color: white; border: none; padding: 16px; 
+            width: 100%; cursor: pointer; font-family: 'Montserrat', sans-serif; 
+            font-weight: bold; letter-spacing: 2px; border-radius: 5px; transition: 0.3s;
         }
         .btn:hover { background: var(--dark); }
 
-        /* КАРТА */
-        .map-frame { 
-            width: 100%; height: 350px; border: 5px solid white; 
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1); border-radius: 10px;
-        }
-
-        footer { padding: 40px; color: var(--soft-gold); font-size: 0.8rem; letter-spacing: 2px; }
+        .map-frame { width: 100%; height: 350px; border: 5px solid white; box-shadow: 0 5px 20px rgba(0,0,0,0.1); border-radius: 10px; }
 
         /* МУЗЫКА БАТЫРМАСЫ */
         .music-btn {
             position: fixed; bottom: 25px; right: 25px; z-index: 9999;
-            background: #fff; width: 45px; height: 45px; border-radius: 50%;
+            background: #fff; width: 50px; height: 50px; border-radius: 50%;
             border: 2px solid var(--gold); display: flex; align-items: center;
             justify-content: center; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
@@ -104,11 +89,11 @@
 <body>
 
     <audio id="myMusic" loop>
-        <source src="https://www.chosic.com/wp-content/uploads/2021/07/Rain-on-the-window-piano-and-cello.mp3" type="audio/mpeg">
+        <source src="https://muz-fm.kz/storage/audio/2021/08/17/1629194244_415086884.mp3" type="audio/mpeg">
     </audio>
 
     <div class="music-btn" id="musicBtn" onclick="toggleMusic()">
-        <span id="musicIcon" style="font-size: 20px;">🎵</span>
+        <span id="musicIcon" style="font-size: 22px;">🎵</span>
     </div>
 
     <div class="hero">
@@ -124,7 +109,6 @@
             <path d="M10,25 Q25,0 50,25 T90,25 M10,25 Q25,50 50,25 T90,25" fill="none" stroke="#b8860b" stroke-width="2"/>
             <circle cx="50" cy="25" r="5" fill="#b8860b"/>
         </svg>
-        
         <h2>Құрметті қонақтар!</h2>
         <div class="info-card">
             <p style="font-size: 1.5rem; line-height: 1.8; font-style: italic; color: #444;">
@@ -138,13 +122,10 @@
         <div class="info-card">
             <p style="font-weight: 700; font-size: 1.5rem; color: var(--gold); margin-bottom: 10px;">19 Маусым 2026</p>
             <p style="font-size: 1.2rem; margin-bottom: 20px;">Сәрсенбі, сағат 18:00</p>
-            
             <div style="height: 1px; width: 60px; background: var(--soft-gold); margin: 15px auto;"></div>
-            
             <p style="font-size: 1.4rem; font-weight: 600;">«Алтын холл» рестораны</p>
             <p style="color: #666;">Құлжа тас жолы, Бәйтерек, 133</p>
         </div>
-
         <div style="margin-top: 40px;">
             <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; color: var(--gold);">Тойға дейін қалды:</p>
             <div class="timer-wrap">
@@ -159,7 +140,6 @@
     <section class="reveal">
         <p style="text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; color: #888;">Ақ тілекпен шақырушылар:</p>
         <h3 style="font-size: 3rem; font-family: 'Great Vibes', cursive; margin: 10px 0; color: var(--dark);">Ерболат — Назгүл</h3>
-        
         <svg class="ornament-box" viewBox="0 0 100 50" style="transform: rotate(180deg); margin-top: 20px;">
             <path d="M10,25 Q25,0 50,25 T90,25 M10,25 Q25,50 50,25 T90,25" fill="none" stroke="#b8860b" stroke-width="2"/>
             <circle cx="50" cy="25" r="5" fill="#b8860b"/>
@@ -169,12 +149,11 @@
     <section class="reveal">
         <h2>Жауап беру</h2>
         <div class="rsvp-form">
-            <p style="margin-bottom: 20px; color: #666;">Тойға келуіңізді 10 маусымға дейін растауыңызды өтінеміз:</p>
             <input type="text" id="guestName" placeholder="Аты-жөніңіз">
             <select id="status">
                 <option value="Келемін">Әрине, келемін!</option>
                 <option value="Жұбайыммен келемін">Жұбайыммен келемін</option>
-                <option value="Келе алмаймын">Өкінішке орай, келе алмаймын</option>
+                <option value="Келе алмаймын">Келе алмаймын</option>
             </select>
             <button class="btn" onclick="sendWA()">ЖІБЕРУ</button>
         </div>
@@ -182,19 +161,15 @@
 
     <section class="reveal">
         <div class="map-frame">
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2906.7725722123533!2d77.2343823154842!3d43.25667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDPCsDE1JzI0LjAiTiA3N8KwMTQnMTEuOCJF!5e0!3m2!1skk!2skz!4v1621234567890!5m2!1skk!2skz" 
-                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
-            </iframe>
+            <iframe src="http://googleusercontent.com/maps.google.com/7" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
     </section>
 
-    <footer style="text-align: center;">
+    <footer style="text-align: center; padding: 40px;">
         <p>СІЗДЕРДІ АСЫҒА КҮТЕМІЗ!</p>
     </footer>
 
     <script>
-        // Music Toggle
         function toggleMusic() {
             const music = document.getElementById('myMusic');
             const btn = document.getElementById('musicBtn');
@@ -210,21 +185,17 @@
             }
         }
 
-        // Reveal Animation
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                if (elementTop < windowHeight - 100) {
-                    reveals[i].classList.add("active");
-                }
+                if (elementTop < windowHeight - 100) { reveals[i].classList.add("active"); }
             }
         }
         window.addEventListener("scroll", reveal);
         window.onload = reveal;
 
-        // Timer
         const target = new Date("June 19, 2026 18:00:00").getTime();
         setInterval(function() {
             const now = new Date().getTime();
@@ -237,14 +208,12 @@
             }
         }, 1000);
 
-        // WhatsApp
         function sendWA() {
             const phone = "77073941943"; 
             const name = document.getElementById('guestName').value;
             const status = document.getElementById('status').value;
-            if(!name) return alert("Өтінеміз, атыңызды жазыңыз");
-            const text = `Сәлеметсіз бе! Дамир-Ленора тойына жауап: %0AЕсімім: ${name} %0AЖауап: ${status}`;
-            window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
+            if(!name) return alert("Атыңызды жазыңыз");
+            window.open(`https://wa.me/${phone}?text=Дамир-Ленора тойына жауап: ${name} - ${status}`, '_blank');
         }
     </script>
 </body>
