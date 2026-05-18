@@ -84,7 +84,6 @@
 <body>
 
     <audio id="myMusic" loop preload="auto">
-        <source src="https://s3.eu-west-3.amazonaws.com/kzmp3/s/dos-muqasan/dos_muqasan_toy_zhyry.mp3" type="audio/mpeg">
         <source src="music.mp3" type="audio/mpeg">
     </audio>
 
@@ -145,10 +144,9 @@
 
     <section class="reveal">
         <h2>Жауап беру</h2>
-        <div class="rsvp-form">
-            <p style="margin-bottom: 20px; color: #666;">Тойға келуіңізді 10 маусымға дейін растауыңызды өтінеміз:</p>
-            <input type="text" id="guestName" placeholder="Аты-жөніңіз">
-            <select id="status">
+        <div style="max-width: 400px; margin: 0 auto;">
+            <input type="text" id="guestName" style="width:100%; padding:14px; margin:10px 0; border:1px solid #dcd3bc; border-radius:5px;" placeholder="Аты-жөніңіз">
+            <select id="status" style="width:100%; padding:14px; margin:10px 0; border:1px solid #dcd3bc; border-radius:5px;">
                 <option value="Келемін">Әрине, келемін!</option>
                 <option value="Жұбайыммен келемін">Жұбайыммен келемін</option>
                 <option value="Келе алмаймын">Келе алмаймын</option>
@@ -174,15 +172,13 @@
             const music = document.getElementById('myMusic');
             const btn = document.getElementById('musicBtn');
             const icon = document.getElementById('musicIcon');
-            
             if (music.paused) {
+                // Егер ән алғаш рет қосылса, тура 22-ші секундтан бастап ойнайды
                 if (isFirstPlay) {
-                    music.currentTime = 22; // 22-ші секундтан бастау
+                    music.currentTime = 22; 
                     isFirstPlay = false;
                 }
-                music.play().catch(error => {
-                    alert("Музыканы ойнату мүмкін болмады. Сілтемені немесе файлды тексеріңіз.");
-                });
+                music.play();
                 btn.classList.add('playing');
                 icon.innerText = '⏸';
             } else {
