@@ -83,8 +83,8 @@
 </head>
 <body>
 
-    <audio id="myMusic" loop>
-        <source src="music.mp3" type="audio/mpeg">
+    <audio id="myMusic" loop preload="auto">
+        <source src="http://googleusercontent.com/file_content/1" type="audio/mpeg">
     </audio>
 
     <div class="music-btn" id="musicBtn" onclick="toggleMusic()">
@@ -143,10 +143,11 @@
     </section>
 
     <section class="reveal">
-        <h2>Жауап беру</h2>
-        <div style="max-width: 400px; margin: 0 auto;">
-            <input type="text" id="guestName" style="width:100%; padding:14px; margin:10px 0; border:1px solid #dcd3bc; border-radius:5px;" placeholder="Аты-жөніңіз">
-            <select id="status" style="width:100%; padding:14px; margin:10px 0; border:1px solid #dcd3bc; border-radius:5px;">
+        <h2>Жауап берегу</h2>
+        <div class="rsvp-form">
+            <p style="margin-bottom: 20px; color: #666;">Тойға келуіңізді 10 маусымға дейін растауыңызды өтінеміз:</p>
+            <input type="text" id="guestName" placeholder="Аты-жөніңіз">
+            <select id="status">
                 <option value="Келемін">Әрине, келемін!</option>
                 <option value="Жұбайыммен келемін">Жұбайыммен келемін</option>
                 <option value="Келе алмаймын">Келе алмаймын</option>
@@ -166,11 +167,19 @@
     </footer>
 
     <script>
+        let isFirstPlay = true;
+
         function toggleMusic() {
             const music = document.getElementById('myMusic');
             const btn = document.getElementById('musicBtn');
             const icon = document.getElementById('musicIcon');
+            
             if (music.paused) {
+                // Егер ән бірінші рет қосылса, тура 22-ші секундтан бастап ойнайды
+                if (isFirstPlay) {
+                    music.currentTime = 22; 
+                    isFirstPlay = false;
+                }
                 music.play();
                 btn.classList.add('playing');
                 icon.innerText = '⏸';
@@ -181,6 +190,7 @@
             }
         }
 
+        // Reveal Animation
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
@@ -192,6 +202,7 @@
         window.addEventListener("scroll", reveal);
         window.onload = reveal;
 
+        // Timer
         const target = new Date("June 19, 2026 18:00:00").getTime();
         setInterval(function() {
             const now = new Date().getTime();
@@ -204,6 +215,7 @@
             }
         }, 1000);
 
+        // WhatsApp
         function sendWA() {
             const phone = "77073941943"; 
             const name = document.getElementById('guestName').value;
